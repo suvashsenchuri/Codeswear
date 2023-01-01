@@ -8,7 +8,7 @@ const tshirts = () => {
         <div className="container px-5 py-24 mx-auto">
           <div className="flex justify-center flex-wrap -m-4">
             <Link href={'/products/wear-the-code'} className='mx-auto md:mx-0'>
-              <div className="p-10 w-full m-5 shadow-md">
+              <div className="p-10 w-full m-4 shadow-md">
                 <div className="block relative rounded overflow-hidden">
                   <img alt="ecommerce" className="h-[40vh] m-auto md:h-[46vh] block" src="https://m.media-amazon.com/images/I/71ia4eBqlTL._AC_SL1120_.jpg" />
                 </div>
@@ -22,7 +22,7 @@ const tshirts = () => {
             </Link>
 
             <Link href={'/products/wear-the-code'} className='mx-auto md:mx-0'>
-              <div className="p-10 w-full m-5 shadow-md">
+              <div className="p-10 w-full m-4 shadow-md">
                 <div className="block relative rounded overflow-hidden">
                   <img alt="ecommerce" className="h-[40vh] m-auto md:h-[46vh] block" src="https://m.media-amazon.com/images/I/71ia4eBqlTL._AC_SL1120_.jpg" />
                 </div>
@@ -36,7 +36,7 @@ const tshirts = () => {
             </Link>
 
             <Link href={'/products/wear-the-code'} className='mx-auto md:mx-0'>
-              <div className="p-10 w-full m-5 shadow-md">
+              <div className="p-10 w-full m-4 shadow-md">
                 <div className="block relative rounded overflow-hidden">
                   <img alt="ecommerce" className="h-[40vh] m-auto md:h-[46vh] block" src="https://m.media-amazon.com/images/I/71ia4eBqlTL._AC_SL1120_.jpg" />
                 </div>
@@ -50,7 +50,7 @@ const tshirts = () => {
             </Link>
 
             <Link href={'/products/wear-the-code'} className='mx-auto md:mx-0'>
-              <div className="p-10 w-full m-5 shadow-md">
+              <div className="p-10 w-full m-4 shadow-md">
                 <div className="block relative rounded overflow-hidden">
                   <img alt="ecommerce" className="h-[40vh] m-auto md:h-[46vh] block" src="https://m.media-amazon.com/images/I/71ia4eBqlTL._AC_SL1120_.jpg" />
                 </div>
