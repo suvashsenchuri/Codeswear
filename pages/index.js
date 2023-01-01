@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import Footer from '../components/Footer'
+import Navbar from '../components/Navbar'
 
 export default function Home() {
   return (
@@ -8,7 +10,9 @@ export default function Home() {
         <meta name="description" content="Codeswear - Wear the Code" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1 className='font-bold text-center text-3xl'>Welcome to NextJS</h1>
+      <Navbar />
+      <Footer />
     </div>
   )
+
 }
