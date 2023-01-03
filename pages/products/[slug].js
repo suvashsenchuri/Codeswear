@@ -1,15 +1,34 @@
-import { useRouter } from 'next/router'
+import { useState } from 'react'
 
-const Post = () => {
-  const router = useRouter()
-  const { slug } = router.query
+const Product = () => {
+  const [pin, setPin] = useState()
+  const [deliveryService, setDeliveryService] = useState()
+
+  const checkServiceAbility = async () => {
+    let pinCodes = await fetch('http://localhost:3000/api/pincode')
+    let pinCodesJson = await pinCodes.json()
+    console.log('pincodeJson', pinCodesJson);
+    if (pinCodesJson.includes(parseInt(pin))) {
+      setDeliveryService(true)
+      console.log('if - includes', pin);
+    } else {
+      setDeliveryService(false)
+      console.log('else - not includes', pin);
+    }
+  }
+
+  const onChangePin = (e) => {
+    setPin(e.target.value)
+    console.log('pins input', pin)
+  }
 
   return (
     <>
       <section className="text-gray-600 body-font overflow-hidden">
         <div className="container px-5 py-12 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
-            <img alt="ecommerce" className="lg:w-1/2 w-full lg:h-auto px-16 object-cover object-top rounded" src="https://m.media-amazon.com/images/I/41olffBNbPL._AC_.jpg" />
+            <img
+              alt="ecommerce" className="lg:w-1/2 w-full lg:h-auto px-16 object-cover object-top rounded" src="https://m.media-amazon.com/images/I/41olffBNbPL._AC_.jpg" />
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h2 className="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
               <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">The Catcher in the Rye</h1>
@@ -84,6 +103,27 @@ const Post = () => {
                   </svg>
                 </button>
               </div>
+              <div className="pin my-3 flex space-x-2">
+                <input
+                  onChange={onChangePin}
+                  placeholder='Enter your Pincode'
+                  type="text"
+                  className='bg-gray-50 placeholder:text-center placeholder:text-sm rounded focus:bg-cyan-50 border border-cyan-500' />
+                <button
+                  onClick={checkServiceAbility}
+                  className='flex text-white bg-cyan-500 border-0 px-2 focus:outline-none hover:bg-cyan-600 rounded'>Check delivery</button>
+              </div>
+              {
+                !deliveryService && deliveryService != null ?
+                  <div className='text-red-500'>
+                    Sorry! We do not deliver to this place yet.
+                  </div>
+                  : deliveryService && deliveryService != null ?
+                    <div className='text-green-500'>
+                      We do deliver to this place.
+                    </div>
+                    : ''
+              }
             </div>
           </div>
         </div>
@@ -92,4 +132,4 @@ const Post = () => {
   )
 }
 
-export default Post
+export default Product
