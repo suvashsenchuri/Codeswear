@@ -4,8 +4,7 @@ import { BsFillBagCheckFill, BsFillCartXFill } from 'react-icons/bs'
 import Link from 'next/link';
 import { useRef } from 'react';
 
-const Navbar = () => {
-
+const Navbar = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
   const toggleCart = () => {
     if (ref.current.classList.contains('translate-x-full')) {
       ref.current.classList.remove('translate-x-full')
@@ -58,22 +57,36 @@ const Navbar = () => {
           <AiFillCloseCircle />
         </span>
         <ol className='list-decimal font-semibold'>
-          <li>
-            <div className='flex my-3'>
-              <div className='w-2/3'>T-shirt - wear the code </div>
-              <div className='w-1/3 flex items-center justify-center text-lg '>
-                <AiFillMinusCircle className='mx-1 text-lg cursor-pointer text-cyan-500' />
-                1
-                <AiFillPlusCircle className='mx-1 text-lg cursor-pointer text-cyan-500' />
-              </div>
-            </div>
-          </li>
+
+          {Object.keys(cart).length == 0 &&
+            <div className='py-2 font-normal'>No items in the cart</div>
+          }
+          {Object.keys(cart).map((k) => {
+            return (
+              <li key={k}>
+                <div className='flex my-3'>
+                  <div className='w-2/3'>{cart[k].name} </div>
+                  <div className='w-1/3 flex items-center justify-center text-lg '>
+                    <AiFillMinusCircle
+                      onClick={() => { removeFromCart(k, 1, cart[k].qty, cart[k].price, cart[k].name, cart[k].size, cart[k].variant) }}
+                      className='mx-1 text-lg cursor-pointer text-cyan-500' />
+                    {cart[k].qty}
+                    <AiFillPlusCircle
+                      onClick={() => { addToCart(k, 1, cart[k].qty, cart[k].price, cart[k].name, cart[k].size, cart[k].variant) }}
+                      className='mx-1 text-lg cursor-pointer text-cyan-500' />
+                  </div>
+                </div>
+              </li>
+            )
+          })}
         </ol>
         <div className="flex">
           <button className="shadow-md flex mx-auto mt-16 text-white bg-cyan-500 border-0 py-2 px-2 focus:outline-none hover:bg-cyan-600 rounded text-sm">
             <BsFillBagCheckFill className='m-1' />
             Checkout</button>
-          <button className="shadow-md flex mx-auto mt-16 text-white bg-cyan-500 border-0 py-2 px-2 focus:outline-none hover:bg-cyan-600 rounded text-">
+          <button
+            onClick={clearCart}
+            className="shadow-md flex mx-auto mt-16 text-white bg-cyan-500 border-0 py-2 px-2 focus:outline-none hover:bg-cyan-600 rounded text-">
             <BsFillCartXFill className='m-1' />
             Clear Cart</button>
         </div>
