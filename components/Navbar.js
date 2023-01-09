@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { AiOutlineShoppingCart, AiFillCloseCircle, AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai";
+import { AiOutlineShoppingCart, AiFillCloseCircle, AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai"; 
 import { BsFillBagCheckFill, BsFillCartXFill } from 'react-icons/bs'
 import { RiAccountCircleFill } from 'react-icons/ri'
 import Link from 'next/link';
