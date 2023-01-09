@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { AiOutlineShoppingCart, AiFillCloseCircle, AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai";
 import { BsFillBagCheckFill, BsFillCartXFill } from 'react-icons/bs'
+import { RiAccountCircleFill } from 'react-icons/ri'
 import Link from 'next/link';
 import { useRef } from 'react';
 
@@ -40,9 +41,9 @@ const Navbar = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
       </div>
 
       <div
-        onClick={toggleCart}
-        className="cursor-pointer cart absolute right-0 mx-5 top-3">
-        <AiOutlineShoppingCart className='text-2xl' />
+        className="cursor-pointer cart absolute right-0 mx-5 top-3 flex space-x-2">
+        <Link href={'/login'}><RiAccountCircleFill className='text-2xl' /></Link>
+        <AiOutlineShoppingCart onClick={toggleCart} className='text-2xl' />
       </div>
 
       {/* Sidecart */}
@@ -54,6 +55,7 @@ const Navbar = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
         <span
           onClick={toggleCart}
           className='top-2 right-2 absolute text-2xl text-cyan-500 cursor-pointer'>
+
           <AiFillCloseCircle />
         </span>
         <ol className='list-decimal font-semibold'>
