@@ -5,13 +5,14 @@ import { useEffect, useState } from 'react'
 
 function MyApp({ Component, pageProps }) {
   const [cart, setCart] = useState({}) || {}
-  const [subTotal, setSubTotal] = useState()
+  const [subTotal, setSubTotal] = useState(0)
 
   useEffect(() => {
     console.log('Hey i am useEffect from App.js');
     try {
       if (localStorage.getItem('cart')) {
         setCart(JSON.parse(localStorage.getItem('cart')))
+        saveCart(JSON.parse(localStorage.getItem('cart')))
       }
     } catch (error) {
 

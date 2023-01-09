@@ -18,7 +18,7 @@ const Navbar = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
   const ref = useRef()
 
   return (
-    <div className='flex flex-col md:flex-row md:justify-start justify-center items-center shadow-md mb-1 py-2'>
+    <div className='flex flex-col md:flex-row md:justify-start justify-center items-center shadow-md mb-1 py-2 sticky top-0 bg-white z-10'>
       <div className="logo">
         <Link href={'/'}>
           <div className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
@@ -48,8 +48,8 @@ const Navbar = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
       {/* Sidecart */}
       <div
         ref={ref}
-        className='h-full w-[36vh] sidecart absolute right-0 top-0 bg-cyan-100 p-7 rounded-bl-lg shadow-md transform
-      transition-transform translate-x-full'>
+        className={`h-[100vh] w-[36vh] sidecart absolute right-0 top-0 bg-cyan-100 p-7 rounded-bl-lg shadow-md transform
+      transition-transform ${Object.keys(cart).length !== 0 ? 'translate-x-0' : 'translate-x-full'}`}>
         <h2 className='font-semibold text-lg text-center'>Shopping Cart</h2>
         <span
           onClick={toggleCart}
@@ -80,13 +80,16 @@ const Navbar = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
             )
           })}
         </ol>
+        <div>Subtotal : <span className='font-semibold'>${subTotal}</span></div>
         <div className="flex">
-          <button className="shadow-md flex mx-auto mt-16 text-white bg-cyan-500 border-0 py-2 px-2 focus:outline-none hover:bg-cyan-600 rounded text-sm">
-            <BsFillBagCheckFill className='m-1' />
-            Checkout</button>
+          <Link href={'/checkout'}>
+            <button className="shadow-md flex mx-auto mt-5 text-white bg-cyan-500 border-0 py-2 px-2 focus:outline-none hover:bg-cyan-600 rounded text-sm">
+              <BsFillBagCheckFill className='m-1' />
+              Checkout</button>
+          </Link>
           <button
             onClick={clearCart}
-            className="shadow-md flex mx-auto mt-16 text-white bg-cyan-500 border-0 py-2 px-2 focus:outline-none hover:bg-cyan-600 rounded text-">
+            className="shadow-md flex mx-auto mt-5 text-white bg-cyan-500 border-0 py-2 px-2 focus:outline-none hover:bg-cyan-600 rounded text-">
             <BsFillCartXFill className='m-1' />
             Clear Cart</button>
         </div>
